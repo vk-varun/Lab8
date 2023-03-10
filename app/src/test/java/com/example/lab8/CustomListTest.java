@@ -38,13 +38,33 @@ public class CustomListTest {
         assertEquals(list.getCount(),listSize + 1);
     }
 
+    /**
+     * add a city to the list
+     * check if the city exists, hasCity gives true
+     */
     @Test
-    void testHasCity() {
+    public void testHasCity() {
         list = MockCityList();
         City city = new City("Regina", "Saskatchewan");
         assertFalse(list.hasCity(city));
         list.addCity(city);
         assertTrue(list.hasCity(city));
+    }
+
+    /**
+     * add a city to the list, check size of list
+     * then delete the city, check size of list
+     * it should decrease after delete
+     */
+    @Test
+    public void deleteCityTest() {
+        list = MockCityList();
+        City city = new City("Regina", "Saskatchewan");
+        list.addCity(city);
+        assertEquals(1, list.getCount());
+        list.deleteCity(city);
+        assertFalse(list.hasCity(city));
+        assertEquals(0, list.getCount());
     }
 
 }
